@@ -1,6 +1,7 @@
 <h1 align="center">Alu_JogoTeca</h1>
 
 ![badge](https://img.shields.io/badge/Flask-3.0.3-blue)
+![badge](https://img.shields.io/badge/MySql-8.0CE-blue)
 ![badge](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
 
@@ -17,7 +18,12 @@ Material de estudo para desenvolver habilidades em Flask, com o objetivo de cria
 
 <h2>Ferramentas</h2>
 
-python 3.12
-pip 24.2
-flask 3.0.3
-bootstrap 5.3.3
+PYTHON 3.12
+
+PIP 24.2
+
+FLASK 3.0.3
+
+BOOTSTRAP 5.3.3
+
+MYSQL CONNECTOR 9.0.0

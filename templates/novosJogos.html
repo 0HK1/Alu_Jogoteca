@@ -1,7 +1,19 @@
 {%extends "template.html"%}
 {%block  conteudo%}
         <div>
-          <form action="{{url_for('criar')}}" method="post">
+          <form action="{{url_for('criar')}}" method="post" enctype="multipart/form-data">
+
+              <figure class="img-thumbnail col-md-4">
+                  <img src="{{url_for('imagem', nome_arquivo='capa_basica.jpg')}}" class="img-fluid">
+                  <figcaption>
+                      <label class="fileContainer">
+                          Mudar Capa
+                          <input type="file" name="arquivo" accept=".jpg">
+                      </label>
+                  </figcaption>
+              </figure>
+
+
             <fieldset>
               <div class="form-group">
                 <label for="nome">Nome</label>
@@ -24,9 +36,7 @@
                   <button type="submit" class="btn btn-outline-secondary">Logout</button>
               </form>
               <a href="{{url_for('index')}}" class="col"><button class="btn btn-outline-info">Página Inicial</button></a>
-              <form method="post" action="/deleteAccount" class="col">
-                  <button type="submit" class="btn btn-outline-danger">Delete Account</button>
-              </form>
+              <a href="{{url_for('deletarConta')}}" class="col"><button class="btn btn-outline-danger">Deletar Conta</button></a>
 
 
         </div>

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, session, flash, url_for
+from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from jogoteca import app, db
 from models import Jogos, Usuarios
 
@@ -36,9 +36,15 @@ def criar():
     novoJogo = Jogos(nome=nome, categoria=categoria, console=console)
     db.session.add(novoJogo)
     db.session.commit()
+    uploads_path = app.config['UPLOAD_PATH']
+    arquivo = request.files['arquivo']
+    arquivo.save(f'{uploads_path}/capa{novoJogo.id}.jpg')
 
     return redirect(url_for('novosjogos'))
 
+@app.route('/imagem/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory('uploads', nome_arquivo)
 
 @app.route('/editar/<int:id>')
 def editar(id):
@@ -59,6 +65,7 @@ def atualizar():
     db.session.commit()
 
     return redirect(url_for('index'))
+
 
 @app.route('/deletar/<int:id>')
 def deletar(id):
@@ -119,3 +126,16 @@ def logout():
     session['usuario_logado'] = None
     flash('Usuario Deslogado')
     return redirect(url_for('index'))
+
+
+@app.route('/deletarConta')
+def deletarConta():
+    conta = session['usuario_logado']
+    if not session['usuario_logado']:
+        flash('Conta não logada')
+        return redirect(url_for('login'))
+    else:
+        Usuarios.query.filter_by(nickname=conta).delete()
+        db.session.commit()
+        flash('Conta deletada')
+        return redirect(url_for('index'))

@@ -1,28 +1,27 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from jogoteca import app, db
 from models import Usuarios
-from helpers import FormularioUsuario
+from helpers import FormularioUsuario, RegistrarUsuario
 
 
 # Rota para adição de dados de novos usuários
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    form = RegistrarUsuario()
+    return render_template('register.html', form=form)
 
 
 # Endpoint para certificar dados da rota register
 @app.route('/autenticarRegistro', methods=['POST', ])
 def autenticarRegistro():
-    nome = request.form['nome']
-    nickname = request.form['nickname']
-    senha = request.form['senha']
+    form = RegistrarUsuario(request.form)
 
-    userCheck = Usuarios.query.filter_by(nome=nome).first()
+    userCheck = Usuarios.query.filter_by(nome=form.nickname.data).first()
     if userCheck:
         flash('Nickname Já Registrado')
         return redirect(url_for("register"))
 
-    novoUsuario = Usuarios(nome=nome, nickname=nickname, senha=senha)
+    novoUsuario = Usuarios(nome=form.usuario.data, nickname=form.nickname.data, senha=form.senha.data)
     db.session.add(novoUsuario)
     db.session.commit()
     return redirect(url_for('login'))

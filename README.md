@@ -8,9 +8,7 @@
 
 ![Imagem Flask](https://media.licdn.com/dms/image/D5612AQHA0KmK22P4JA/article-cover_image-shrink_600_2000/0/1701780419999?e=2147483647&v=beta&t=VJOcqpZ0sBraLinYyD6DXEpwz9n3jwRPb0teorBdUQk)
 
-<h4 align="center"> 
-      Projeto em construção  
-</h4>
+
 
 <h2>Funcionalidade</h2>
 

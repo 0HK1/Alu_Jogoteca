@@ -32,8 +32,8 @@ def criar():
         return redirect(url_for('novosjogos'))
 
     nome = form.nome.data
-    categoria = form.nome.data
-    console = form.nome.data
+    categoria = form.categoria.data
+    console = form.console.data
 
     jogo = Jogos.query.filter_by(nome=nome).first()
 

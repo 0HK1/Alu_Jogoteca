@@ -16,6 +16,11 @@ class FormularioUsuario(FlaskForm):
     senha = PasswordField('Senha', [validators.data_required(), validators.length(min=1, max=100)])
     login = SubmitField('Login')
 
+class RegistrarUsuario(FlaskForm):
+    nickname = StringField('Nickname', [validators.data_required(), validators.length(min=1, max=8)])
+    usuario = StringField('Nome de Usuário', [validators.data_required(), validators.length(min=1, max=20)])
+    senha = PasswordField('Senha', [validators.data_required(), validators.length(min=1, max=100)])
+    register = SubmitField('Registrar')
 
 def recuperaImg(id):
     for nome_arquivos in os.listdir(app.config['UPLOAD_PATH']):
